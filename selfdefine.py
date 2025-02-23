@@ -33,11 +33,11 @@ def fillbackground(screen, Color_floor, Color_ceiling, height, width, I_ambient,
     lenth = height // 2
     R, G, B = Color_ceiling
     for i in range(lenth):
-        light = I_ambient + I_souse * (lenth - i) / lenth
+        light = I_ambient + (1 - I_ambient) * I_souse * (lenth - i) / lenth
         line_color_ceiling = (int(R * light), int(G * light), int(B * light))
         pg.draw.line(screen, line_color_ceiling, (0, i), (width, i))
     R, G, B = Color_floor
-    for i in range(height-lenth):
-        light = 1 - (I_ambient + I_souse * (lenth - i) / lenth)
+    for i in range(height-lenth, -1, -1):
+        light = I_ambient + (1 - I_ambient) * I_souse * (lenth - i) / lenth
         line_color_floor = (int(R * light), int(G * light), int(B * light))
-        pg.draw.line(screen, line_color_floor, (0, i + lenth), (width, i + lenth))
+        pg.draw.line(screen, line_color_floor, (0, lenth * 2 - i), (width, lenth * 2 - i))
