@@ -2,6 +2,7 @@ import json
 import pygame as pg
 import random
 
+
 def generate_maze(width, height):
     # 创建一个二维数组，初始值为1（表示墙）
     maze = [[1 for _ in range(width)] for _ in range(height)]
@@ -23,6 +24,12 @@ def generate_maze(width, height):
     maze[start_y][start_x] = 0
     carve_path(start_x, start_y)
     
+    maze.insert(0, [1] * width)
+    maze.append([1] * width)
+    for i in range(height + 2):
+        maze[i].insert(0, 1)
+        maze[i].append(1)
+
     return maze
 
 def readjson(filename):
@@ -41,3 +48,17 @@ def fillbackground(screen, Color_floor, Color_ceiling, height, width, I_ambient,
         light = I_ambient + (1 - I_ambient) * I_souse * (lenth - i) / lenth
         line_color_floor = (int(R * light), int(G * light), int(B * light))
         pg.draw.line(screen, line_color_floor, (0, lenth * 2 - i), (width, lenth * 2 - i))
+
+
+def creatmap(maplist):
+    res = []
+    for i in range(len(maplist)):
+        temp = []
+        for j in range(len(maplist[0])):
+            for k in range(10):
+                temp.append(maplist[i][j])
+        for k in range(10):
+            res.append(temp)
+    return res
+
+    

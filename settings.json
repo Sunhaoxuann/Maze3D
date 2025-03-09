@@ -7,6 +7,6 @@
     "roll_speed": 0.1,
     "I_ambient": 0.8,
     "I_sourse": 0.9,
-    "map_maza_width": 10,
-    "map_maza_height": 10
+    "map_maza_width": 30,
+    "map_maza_height": 20
 }
